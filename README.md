@@ -27,6 +27,34 @@ msPKI-Enrollment-Flag   : 41
 
 List of supported features
 
+You can specify the `-acl` switch to dump access control for each item
+
+```
+ADHuntTool.exe DumpCertificateTemplates RINGZER0,DC=CA -acl
+
+CA Name is:
+Connecting to: LDAP://CN=AIA,CN=Public Key Services,CN=Services,CN=Configuration,DC=RINGZER0,DC=CA
+Querying:      (&(!name=AIA))
+ntSecurityDescriptor    : Group: RINGZER0\Enterprise Admins
+DACL
+------------
+Type: Access Allowed
+Permissions: Create All Child Objects|Delete All Child Objects|List Contents|All Validated Writes|Read All Properties|Write All Properties|Delete Subtree|List Object|All Extended Rights|Delete|Read Permissions|Modify Permissions|Modify Owner
+Trustee: Domain Administrators
+------------
+Type: Access Allowed
+Permissions: Create All Child Objects|Delete All Child Objects|List Contents|All Validated Writes|Read All Properties|Write All Properties|Delete Subtree|List Object|All Extended Rights|Delete|Read Permissions|Modify Permissions|Modify Owner
+Trustee: RINGZER0\Enterprise Admins
+------------
+...
+
+
+```
+
+The command output can be redirected to a file using the `-tofile`. Filename is the unixtimestamp
+
+Standard commands
+
 ```
 Usage: ADHuntTool.exe options domain [arguments]
 
@@ -37,6 +65,7 @@ ADHuntTool.exe DumpRemoteSession RingZer0 *optional*computername
 ADHuntTool.exe DumpWkstaSession RingZer0 *optional*computername
 ADHuntTool.exe CheckAdmin RingZer0 *optional*computername
 ADHuntTool.exe DumpTrust RingZer0
+ADHuntTool.exe DumpSamAccount RingZer0
 ADHuntTool.exe DumpAllUsers RingZer0
 ADHuntTool.exe DumpUser RingZer0 mr.un1k0d3r
 ADHuntTool.exe DumpUsersEmail RingZer0
